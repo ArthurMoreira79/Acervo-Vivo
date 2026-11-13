@@ -4,17 +4,11 @@ Rede social para artesãos: dá visibilidade ao trabalho manual e compartilha a 
 
 SPA (Single Page Application) feita só com HTML, CSS e JavaScript, sem frameworks e **sem banco de dados**.
 
-## Como rodar
+## Acesse
 
-Opção 1: abrir o `index.html` direto no navegador (duplo clique).
+👉 **https://acervo-vivo-three.vercel.app/#/login**
 
-Opção 2: servir a pasta (recomendado):
-
-```bash
-npx http-server acervo-vivo -p 5173
-```
-
-Depois acesse http://localhost:5173.
+Não precisa instalar nada: basta abrir o link no navegador (computador ou celular), entrar com a conta de demonstração ou criar a sua.
 
 **Conta de demonstração:** `maria@acervovivo.com` / senha `123456`
 (as outras contas de exemplo usam o mesmo padrão: ana@, raimundo@, tereza@, jose@).
@@ -26,6 +20,16 @@ Depois acesse http://localhost:5173.
 - **Publicar obra**: título, técnica, descrição e foto opcional. Obras sem foto ganham uma ilustração gerada a partir da técnica (renda, cerâmica, cestaria, bordado…).
 - **Meu perfil**: editar nome, ofício, cidade, foto, contato (Instagram e WhatsApp) e a seção **Sobre mim** (história, inspirações, técnicas e materiais). Também é possível editar e excluir as próprias obras.
 - **Perfil de outros artesãos**: clique no nome de alguém para ver a história e as obras da pessoa.
+
+## Rodar localmente (para desenvolvimento)
+
+Abra o `index.html` direto no navegador (duplo clique) ou sirva a pasta do repositório:
+
+```bash
+npx http-server . -p 5173
+```
+
+Depois acesse http://localhost:5173.
 
 ## Como os dados são guardados
 
