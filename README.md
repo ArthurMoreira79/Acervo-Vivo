@@ -1,55 +1,74 @@
-# Acervo Vivo
+# Cultura em Rede — Vitrine & Rede de Artesãos de São Luís
 
-Rede social para artesãos: dá visibilidade ao trabalho manual e compartilha a cultura popular de forma digital.
+**Cultura em Rede** é uma plataforma e rede social voltada para divulgar, valorizar e dar visibilidade às obras desenvolvidas por artesãos e mestres da cultura popular de **São Luís do Maranhão** (azulejaria tradicional, fibra de buriti, bordados do Bumba Meu Boi, cerâmica, renda de bilro e xilogravura).
 
-SPA (Single Page Application) feita só com HTML, CSS e JavaScript, sem frameworks e **sem banco de dados**.
+A página inicial adota uma estética visual inspirada no **Pinterest**, permitindo que visitantes naveguem livremente por publicações, descubram a riqueza cultural maranhense e se conectem diretamente com os produtores para aquisição e encomendas pelo WhatsApp e Instagram.
 
-## Acesse
+SPA (Single Page Application) construída em **HTML5, CSS3 moderno e JavaScript puro (Vanilla JS)**, sem dependências externas pesadas e **sem necessidade de banco de dados** (persistência em `localStorage`).
 
-👉 **https://acervo-vivo-three.vercel.app/#/login**
+---
 
-Não precisa instalar nada: basta abrir o link no navegador (computador ou celular), entrar com a conta de demonstração ou criar a sua.
+## 🌟 Principais Recursos
 
-**Conta de demonstração:** `maria@acervovivo.com` / senha `123456`
-(as outras contas de exemplo usam o mesmo padrão: ana@, raimundo@, tereza@, jose@).
+- **Home Aberta Estilo Pinterest (Sem Barramento)**:
+  - Ao abrir o site, o usuário entra diretamente no feed/galeria pública de obras em layout *Masonry Grid*.
+  - Visitantes não são bloqueados por tela de login e podem explorar livremente as criações, técnicas e perfis.
+- **Botão de Chamada para Produtores**:
+  - No início e no rodapé da página: *"Quer criar e divulgar suas obras? Comece por aqui"*, direcionando artesãos e produtores para a criação de conta ou login.
+- **Cards de Obras Ricos em Contato**:
+  - Cada card traz foto em destaque, técnica utilizada, título, breve descrição e os dados do artesão.
+  - Links diretos e integrados para **WhatsApp** (com mensagem pré-configurada para encomenda) e **Instagram** do artesão.
+  - Curtidas com contador.
+- **Página de Perfil do Artesão**:
+  - Ao clicar no nome ou foto do autor no post, o visitante é direcionado para a página do perfil dele com sua biografia (*Minha História*, *Inspirações* e *Técnicas e Materiais*), canais de venda e todo o acervo de obras em grade Pinterest.
+- **Busca em Tempo Real & Filtros por Técnica**:
+  - Busca por nome da peça, artesão ou técnica.
+  - Filtros em chips/pílulas horizontais (*Todas*, *Azulejaria*, *Fibra de Buriti*, *Bordado de Bumba Boi*, *Cerâmica*, etc.).
+- **Área do Produtor (Login / Cadastro / Publicação)**:
+  - Cadastro simples e rápido para novos artesãos.
+  - Publicação de novas peças com foto (com compressão automática para o limite do navegador) ou ilustrações procedurais artísticas como fallback.
+  - Edição de perfil e gerenciamento de obras.
 
-## Funcionalidades
+---
 
-- **Login e cadastro**: ao entrar, você vai direto para o Início.
-- **Início (feed)**: publicações de todos os artesãos, da mais nova para a mais antiga, com filtro por técnica, curtidas e comentários.
-- **Publicar obra**: título, técnica, descrição e foto opcional. Obras sem foto ganham uma ilustração gerada a partir da técnica (renda, cerâmica, cestaria, bordado…).
-- **Meu perfil**: editar nome, ofício, cidade, foto, contato (Instagram e WhatsApp) e a seção **Sobre mim** (história, inspirações, técnicas e materiais). Também é possível editar e excluir as próprias obras.
-- **Perfil de outros artesãos**: clique no nome de alguém para ver a história e as obras da pessoa.
+## 🚀 Como Rodar Localmente
 
-## Rodar localmente (para desenvolvimento)
-
-Abra o `index.html` direto no navegador (duplo clique) ou sirva a pasta do repositório:
+Abra o arquivo `index.html` diretamente em qualquer navegador moderno (duplo clique) ou sirva a pasta com um servidor HTTP local:
 
 ```bash
 npx http-server . -p 5173
 ```
 
-Depois acesse http://localhost:5173.
+Acesse: `http://localhost:5173`
 
-## Como os dados são guardados
+---
 
-Não há banco de dados. Os dados ficam no `localStorage` do navegador (chave `acervoVivo:v1`):
+## 👥 Contas de Demonstração (Artesãos de São Luís)
 
-- Na primeira visita, o app carrega os exemplos de `js/data.js`.
-- Tudo o que você cria fica salvo **só naquele navegador**. Outro computador ou navegador não vê as mesmas publicações.
-- Fotos são reduzidas automaticamente antes de salvar, mas o `localStorage` tem limite de ~5 MB.
-- O botão "Restaurar dados de exemplo" (coluna esquerda do Início) volta ao estado inicial.
+- **Maria da Graça Ferreira** (Azulejaria e Cerâmica · Centro Histórico): `maria@culturaemrede.com` · Senha: `123456`
+- **Mestre Raimundo Nonato** (Fibra de Buriti e Cestaria · Madre Deus): `raimundo@culturaemrede.com` · Senha: `123456`
+- **Dona Tereza de Jesus** (Bordadeira de Bumba Meu Boi · Monte Castelo): `tereza@culturaemrede.com` · Senha: `123456`
+- **Ana Lúcia Raposo** (Rendeira de Bilro · Praia Grande): `ana@culturaemrede.com` · Senha: `123456`
+- **José Ribamar Silva** (Xilogravurista e Escultor · Desterro): `jose@culturaemrede.com` · Senha: `123456`
 
-> As senhas ficam em texto puro no navegador. Isso serve para um protótipo, mas não para produção:
-> quando houver back-end, a autenticação e as senhas (com hash) devem ficar no servidor.
+---
 
-## Estrutura
+## 💾 Armazenamento de Dados
+
+Os dados são armazenados localmente no navegador via `localStorage` com módulo de persistência encapsulado:
+- Na primeira visita, o sistema carrega os artesãos e obras de `js/data.js`.
+- O botão *"Restaurar dados de exemplo"* (disponível na área de login ou através da API) restaura o acervo inicial de São Luís.
+- Imagens enviadas pelo usuário são comprimidas via Canvas antes de serem salvas.
+
+---
+
+## 📁 Estrutura de Arquivos
 
 ```
-acervo-vivo/
-├── index.html      # casca da SPA
-├── css/style.css   # estilos (paleta barro, palha, anil)
+Acervo-Vivo/
+├── index.html      # Estrutura base da SPA
+├── css/style.css   # Estilos Pinterest, paleta de São Luís, tipografia e responsividade
 └── js/
-    ├── data.js     # dados de demonstração (pessoas fictícias)
-    └── app.js      # rotas (#/login, #/inicio, #/perfil, #/artesao/:id), telas e eventos
+    ├── data.js     # Artesãos de São Luís e obras de demonstração
+    └── app.js      # Roteamento SPA, feed Pinterest, busca, modais e interações
 ```
