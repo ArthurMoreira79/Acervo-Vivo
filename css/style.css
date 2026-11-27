@@ -872,7 +872,7 @@ button, input, textarea, select {
 .banner-icone .icone { width: 2.2rem; height: 2.2rem; }
 .banner-textos {
   flex: 1;
-  min-width: 260px;
+  min-width: min(260px, 100%); 
 }
 .banner-textos h2 {
   font-size: 1.6rem;
@@ -885,7 +885,9 @@ button, input, textarea, select {
   max-width: 650px;
 }
 .banner-botao {
-  flex: none;
+  flex: 0 1 auto;   
+  min-width: 0;
+  max-width: 100%;
 }
 .btn-cta-rodape {
   background: var(--anil-escuro);
@@ -1453,7 +1455,54 @@ button, input, textarea, select {
   opacity: 0; cursor: pointer;
   font-size: 0;
 }
+.btn-cta-principal,
+.btn-cta-rodape {
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+  justify-content: center;
+}
 
+.btn-cta-principal span,
+.btn-cta-rodape span {
+  white-space: normal;
+  min-width: 0;
+}
+.btn.btn-cta-principal,
+.btn.btn-cta-rodape {
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+}
+
+.btn.btn-cta-principal span,
+.btn.btn-cta-rodape span {
+  white-space: normal;
+  min-width: 0;
+}
+
+/* Header no mobile */
+@media (max-width: 640px) {
+  .topo-interno {
+    flex-wrap: wrap;        /* a busca desce para a 2ª linha */
+    gap: 0.5rem;
+  }
+  .marca { gap: 0.5rem; min-width: 0; }
+  .logo-icone { width: 2rem; height: 2rem; }
+  .marca-nome { font-size: 1rem; }
+
+  .nav a { padding: 0.5rem 0.6rem; }
+
+  .topo-acoes-visitante { gap: 0.25rem; }
+  .btn-login-nav { padding: 0.4rem 0.5rem; }
+  .btn-destaque-topo { padding: 0.5rem 0.8rem; }
+
+  .topo-busca {
+    order: 5;               /* vai para o fim */
+    flex: 1 1 100%;         /* ocupa a linha toda */
+    max-width: none;
+  }
+}
 .editor-avatar { display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
 .editor-avatar .avatar { width: 5.5rem; height: 5.5rem; font-size: 1.8rem; }
 .editor-avatar .botoes { display: flex; gap: 0.5rem; flex-wrap: wrap; }
