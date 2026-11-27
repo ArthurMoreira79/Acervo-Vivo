@@ -470,7 +470,24 @@
         acoesUsuario +
       '</div>' +
       '</header>' +
-      '<main class="conteudo-principal" id="conteudo">' + conteudo + '</main>';
+      '<main class="conteudo-principal" id="conteudo">' + conteudo + '</main>' +
+      navMobile(eu, atual);
+  }
+
+  // Barra de navegação inferior exibida apenas em telas pequenas (mobile)
+  function navMobile(eu, atual) {
+    const itens = [
+      '<a href="#/inicio"' + atual('inicio') + '>' + icone('casa') + '<span>Início</span></a>',
+      '<button type="button" data-acao="focar-busca">' + icone('lupa') + '<span>Buscar</span></button>'
+    ];
+    if (eu) {
+      itens.push('<button type="button" class="nav-mobile-publicar" data-acao="nova-obra" aria-label="Publicar nova obra">' + icone('mais') + '<span>Publicar</span></button>');
+      itens.push('<a href="#/perfil"' + atual('perfil') + '>' + icone('pessoa') + '<span>Perfil</span></a>');
+    } else {
+      itens.push('<a href="#/cadastro" class="nav-mobile-publicar">' + icone('mais') + '<span>Divulgar</span></a>');
+      itens.push('<a href="#/login">' + icone('pessoa') + '<span>Entrar</span></a>');
+    }
+    return '<nav class="nav-mobile" aria-label="Navegação móvel">' + itens.join('') + '</nav>';
   }
 
   /* ---------- 5. Telas ---------- */
@@ -1051,6 +1068,19 @@
       const input = document.getElementById('input-busca-global');
       if (input) input.value = '';
       renderizar();
+    },
+    'focar-busca'() {
+      const focar = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const input = document.getElementById('input-busca-global');
+        if (input) input.focus({ preventScroll: true });
+      };
+      if (location.hash !== '#/inicio' && location.hash !== '#/' && location.hash !== '') {
+        irPara('#/inicio');
+        setTimeout(focar, 80);
+      } else {
+        focar();
+      }
     },
     'ver-detalhe'(el) {
       const id = el.dataset.id;
