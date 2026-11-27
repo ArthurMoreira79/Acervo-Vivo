@@ -1434,6 +1434,16 @@ button, input, textarea, select {
   padding: 1.25rem 1.75rem 1.5rem;
   border-top: 1px solid var(--borda);
 }
+/* "Cancelar" com contraste reforçado dentro dos modais */
+.modal-rodape .btn-sec {
+  background: var(--areia);
+  border-color: var(--borda);
+  color: var(--tinta);
+}
+.modal-rodape .btn-sec:hover {
+  background: var(--areia-escura);
+  border-color: var(--tinta-3);
+}
 
 .upload {
   border: 2px dashed var(--borda);
@@ -1481,6 +1491,12 @@ button, input, textarea, select {
   min-width: 0;
 }
 
+/* =========================================================
+   Navbar Mobile (barra inferior fixa)
+   ========================================================= */
+
+.nav-mobile { display: none; }
+
 /* Header no mobile */
 @media (max-width: 640px) {
   .topo-interno {
@@ -1491,16 +1507,91 @@ button, input, textarea, select {
   .logo-icone { width: 2rem; height: 2rem; }
   .marca-nome { font-size: 1rem; }
 
-  .nav a { padding: 0.5rem 0.6rem; }
+  /* A navegação principal migra para a barra inferior */
+  .nav { display: none; }
+
+  .topo-acoes-usuario { gap: 0.4rem; margin-left: auto; }
+  .topo-acoes-usuario .btn-nova-obra { display: none; } /* já existe na barra inferior */
+  .nome-produtor { display: none; }
 
   .topo-acoes-visitante { gap: 0.25rem; }
-  .btn-login-nav { padding: 0.4rem 0.5rem; }
+  .btn-login-nav { display: none; } /* "Entrar" fica na barra inferior */
   .btn-destaque-topo { padding: 0.5rem 0.8rem; }
 
   .topo-busca {
     order: 5;               /* vai para o fim */
     flex: 1 1 100%;         /* ocupa a linha toda */
     max-width: none;
+  }
+  .topo-busca input { font-size: 1rem; } /* evita zoom automático no iOS */
+
+  /* Barra de navegação inferior */
+  .nav-mobile {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-around;
+    background: rgba(255, 252, 248, 0.97);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--borda);
+    box-shadow: 0 -4px 16px rgba(28, 25, 23, 0.08);
+    padding: 0.3rem 0.5rem;
+    padding-bottom: calc(0.3rem + env(safe-area-inset-bottom, 0px));
+  }
+  .nav-mobile a,
+  .nav-mobile button {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15rem;
+    min-height: 3.25rem;
+    padding: 0.35rem 0.25rem;
+    border: 0;
+    background: none;
+    border-radius: var(--raio-p);
+    color: var(--tinta-2);
+    font-size: 0.7rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+  .nav-mobile a:hover,
+  .nav-mobile button:hover,
+  .nav-mobile a:active,
+  .nav-mobile button:active {
+    color: var(--anil-escuro);
+    background: var(--areia-escura);
+  }
+  .nav-mobile .icone { width: 1.45rem; height: 1.45rem; }
+  .nav-mobile a[aria-current="page"] { color: var(--anil-escuro); }
+  .nav-mobile a[aria-current="page"] .icone { stroke-width: 2.4; }
+
+  /* Botão central de publicar em destaque */
+  .nav-mobile .nav-mobile-publicar .icone {
+    width: 2.1rem;
+    height: 2.1rem;
+    padding: 0.4rem;
+    border-radius: 50%;
+    background: var(--barro);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(181, 83, 47, 0.35);
+  }
+  .nav-mobile .nav-mobile-publicar:hover { background: none; }
+  .nav-mobile .nav-mobile-publicar:hover .icone { background: var(--barro-esc); }
+
+  /* Reserva espaço para a barra inferior não cobrir o conteúdo */
+  .conteudo-principal {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  }
+  #toast {
+    bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
   }
 }
 .editor-avatar { display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
@@ -1553,6 +1644,77 @@ button, input, textarea, select {
   .linha-campos { grid-template-columns: 1fr; }
   .hero-pinterest { border-radius: 20px; padding: 1.75rem 1.25rem; }
   .banner-rodape-cta { border-radius: 20px; padding: 1.5rem 1.25rem; }
+
+  /* Hero mais compacto e CTAs confortáveis ao toque */
+  .hero-cta-grupo .btn { flex: 1 1 auto; }
+  .hero-destaques-artesaos { padding-top: 1rem; }
+
+  /* Perfil do artesão */
+  .perfil-capa { height: 150px; }
+  .perfil-id { padding: 0 1.15rem 1.35rem; gap: 0.85rem 1.25rem; }
+  .perfil-id .avatar-g { width: 6rem; height: 6rem; font-size: 2.1rem; margin-top: -3.25rem; }
+  .perfil-id .botoes { width: 100%; }
+  .perfil-numeros { gap: 1.25rem; flex-wrap: wrap; }
+  .cartao-corpo { padding: 1.15rem; }
+
+  /* Banner de rodapé empilhado */
+  .banner-rodape-conteudo { gap: 1.25rem; }
+  .banner-botao { flex: 1 1 100%; }
+  .banner-botao .btn { width: 100%; }
+}
+
+/* Modais em telas pequenas: aproveitam a tela toda */
+@media (max-width: 640px) {
+  .modal-fundo { padding: 0; align-items: flex-end; }
+
+  .modal-detalhe-pin {
+    height: 100dvh;
+    max-height: 100dvh;
+    border-radius: 0;
+  }
+  .detalhe-grid { max-height: none; }
+  .detalhe-lado-midia { max-height: 300px; flex: none; }
+  .detalhe-lado-info { padding: 1.5rem 1.25rem; max-height: none; }
+  .detalhe-titulo { font-size: 1.45rem; }
+
+  .modal-obra {
+    border-radius: 20px 20px 0 0;
+    max-height: calc(100dvh - 1.5rem);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  /* O form envolve corpo + rodapé; precisa participar do layout flex */
+  .modal-obra form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+  }
+  .modal-cabecalho { flex: none; gap: 0.75rem; padding: 1rem 1.25rem; }
+  .modal-cabecalho h2 { font-size: 1.15rem; line-height: 1.3; }
+  .modal-corpo { flex: 1; min-height: 0; overflow-y: auto; padding: 1.25rem 1.25rem 0.5rem; max-height: none; }
+  .modal-rodape {
+    flex: none;
+    background: var(--papel);
+    padding: 1rem 1.25rem calc(1rem + env(safe-area-inset-bottom, 0px));
+  }
+  .modal-rodape .btn { flex: 1; }
+
+  /* Chips de filtro com rolagem confortável */
+  .barra-filtros-topo { gap: 0.6rem; margin-bottom: 1.15rem; }
+  .filtros-chips {
+    flex: 1 1 100%;
+    margin: 0 -1.25rem;
+    padding: 0 1.25rem 0.4rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .contador-obras { display: none; }
+
+  /* Tipografia e espaçamentos mais enxutos */
+  .conteudo-principal { padding-left: 1rem; padding-right: 1rem; }
+  .vazio-pinterest { padding: 2.5rem 1.25rem; }
+  .titulo-secao-obras h2 { font-size: 1.25rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
